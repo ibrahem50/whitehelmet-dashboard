@@ -25,3 +25,23 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+## Prerequisites
+
+Ensure you have the following installed:
+
+- **Node.js**: version 20.11.1
+- **npm**: version 9.2.0
+- **Angular CLI**: version 18.2.11
+
+## Installation
+
+1. Clone this repository to your local machine.
+2. Run `npm install` to install the project dependencies.
+
+## Start the application
+
+After installation, you can start the development server by running:
+
+1. `ng serve` or `npm start`
+2. Navigate to `http://localhost:4200/` in your browser to see the application.
