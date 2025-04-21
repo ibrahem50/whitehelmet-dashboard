@@ -8,7 +8,6 @@ let activeRequests = 0;
 export const loaderInterceptor: HttpInterceptorFn = (req, next) => {
   const loadingService = inject(LoadingService);
   activeRequests++;
-
   if (activeRequests === 1) {
     loadingService.startLoading();
   }

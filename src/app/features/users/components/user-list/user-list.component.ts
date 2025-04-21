@@ -1,3 +1,4 @@
+import { ActivatedRoute, Router } from '@angular/router';
 import {
   BehaviorSubject,
   Observable,
@@ -26,6 +27,8 @@ import { UserService } from '../../services/user.service';
 })
 export class UserListComponent {
   private dialog = inject(MatDialog);
+  private router = inject(Router);
+  private route = inject(ActivatedRoute);
   private snackBar = inject(MatSnackBar);
   private userService = inject(UserService);
 
@@ -86,10 +89,12 @@ export class UserListComponent {
     this.page$.next(event.pageIndex + 1);
   }
 
-  add() {}
+  add() {
+    this.router.navigate(['create'], { relativeTo: this.route });
+  }
 
   edit(user: UserInterface) {
-    console.log('Edit:', user);
+    this.router.navigate([`${user.id}`], { relativeTo: this.route });
   }
 
   delete(user: UserInterface) {

@@ -4,6 +4,7 @@ export interface UserInterface {
   lname: string;
   username: string;
   avatar: string;
+  email?: string;
 }
 
 export interface UserResponse {
