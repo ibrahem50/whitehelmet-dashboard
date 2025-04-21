@@ -1,1 +1,80 @@
-<p>attraction-list works!</p>
+<section class="table">
+  <div class="table_button">
+    <button class="general-button" (click)="add()">Add Attraction</button>
+  </div>
+
+  <div class="table_container">
+    <div class="table_container_filter">
+      <mat-form-field appearance="outline">
+        <mat-label>Search Attraction</mat-label>
+        <input
+          matInput
+          [formControl]="searchControl"
+          placeholder="Search by name"
+          type="text"
+        />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Sort By</mat-label>
+        <mat-select [formControl]="sortByControl">
+          <mat-option value="id">ID</mat-option>
+          <mat-option value="name">Name</mat-option>
+          <mat-option value="detail">Detail</mat-option>
+          <mat-option value="latitude">Latitude</mat-option>
+          <mat-option value="longitude">Longitude</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Order</mat-label>
+        <mat-select [formControl]="sortOrderControl">
+          <mat-option value="asc">Ascending</mat-option>
+          <mat-option value="desc">Descending</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    @if (attractions$|async; as attractions) { @if (attractions.data.length>0) {
+    <table
+      mat-table
+      [dataSource]="attractions.data"
+      class="table_container--content mat-elevation-z8"
+    >
+      @for (col of displayedColumns; track $index) {
+      <ng-container [matColumnDef]="col">
+        <th mat-header-cell *matHeaderCellDef>{{ col }}</th>
+        <td mat-cell *matCellDef="let element">
+          <img
+            *ngIf="col === 'coverimage'"
+            [src]="element[col]"
+            alt="coverimage"
+          />
+          <ng-container *ngIf="col !== 'coverimage' && col !== 'actions'">
+            {{ element[col] }}
+          </ng-container>
+          <div class="buttons" *ngIf="col === 'actions'">
+            <div class="buttons_wrapper">
+              <button class="general-button" (click)="edit(element)">
+                Edit
+              </button>
+              <button class="general-button" (click)="delete(element)">
+                Delete
+              </button>
+            </div>
+          </div>
+        </td>
+      </ng-container>
+      }
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+    <mat-paginator
+      [length]="attractions.total"
+      [pageSize]="attractions.per_page"
+      [pageSizeOptions]="[5, 10, 25, 100]"
+      (page)="onPageChange($event)"
+    ></mat-paginator>
+    } @else {
+    <p>😕 No attractions found</p>
+    } }
+  </div>
+</section>

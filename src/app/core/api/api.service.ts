@@ -11,7 +11,7 @@ export class ApiService {
   private http = inject(HttpClient);
 
   private getAuthToken(): string | null {
-    return localStorage.getItem('authToken');
+    return localStorage.getItem('jwt_token');
   }
 
   private getHttpOptions(withAuthToken: boolean = false) {
@@ -22,7 +22,7 @@ export class ApiService {
     if (withAuthToken) {
       const token = this.getAuthToken();
       if (token) {
-        headers = headers.set('Bearer Token', `${token}`);
+        headers = headers.set('Authorization', `Bearer ${token}`);
       }
     }
 

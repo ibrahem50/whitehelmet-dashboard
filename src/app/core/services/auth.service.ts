@@ -42,7 +42,7 @@ export class AuthService {
   }
 
   private setToken(token: string, expiresIn: number): void {
-    const expiry = Date.now() + expiresIn * 1000; // convert to ms
+    const expiry = Date.now() + expiresIn;
     localStorage.setItem(this.tokenKey, token);
     localStorage.setItem(this.tokenExpiryKey, expiry.toString());
     this.authState.next(true);
@@ -61,7 +61,10 @@ export class AuthService {
 
   login(data: AuthInterface): Observable<AuthInterfaceResponse> {
     return this.apiService
-      .postRequest<AuthInterfaceResponse>(this.path, data)
+      .postRequest<AuthInterfaceResponse>(this.path, {
+        ...data,
+        expiresIn: 600000,
+      })
       .pipe(
         tap((res) => {
           this.setToken(res.accessToken, res.expiresIn);
@@ -71,7 +74,7 @@ export class AuthService {
 
   logout(): void {
     this.clearToken();
-    this.router.navigate(['/auth/login']);
+    this.router.navigate(['/login']);
   }
 
   isAuthenticatedSync(): boolean {
@@ -85,7 +88,7 @@ export class AuthService {
 
     this.autoLogoutTimer = setTimeout(() => {
       this.logout();
-    }, expiresIn * 1000);
+    }, expiresIn);
   }
 
   private scheduleAutoLogoutFromStorage(): void {
@@ -94,7 +97,7 @@ export class AuthService {
     if (expiry) {
       const timeRemaining = +expiry - Date.now();
       if (timeRemaining > 0) {
-        this.scheduleAutoLogout(timeRemaining / 1000);
+        this.scheduleAutoLogout(timeRemaining);
       } else {
         this.clearToken();
       }
