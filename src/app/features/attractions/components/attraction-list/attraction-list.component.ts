@@ -27,6 +27,7 @@ import { UserService } from '../../../users/services/user.service';
   selector: 'app-attraction-list',
   templateUrl: './attraction-list.component.html',
   styleUrl: './attraction-list.component.scss',
+  standalone: false,
 })
 export class AttractionListComponent {
   private dialog = inject(MatDialog);

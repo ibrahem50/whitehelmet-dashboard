@@ -9,6 +9,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   selector: 'app-attraction-detail',
   templateUrl: './attraction-detail.component.html',
   styleUrl: './attraction-detail.component.scss',
+  standalone: false,
 })
 export class AttractionDetailComponent {
   private route = inject(ActivatedRoute);

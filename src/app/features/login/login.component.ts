@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
+  standalone: false,
 })
 export class LoginComponent {
   loginForm: FormGroup = new FormGroup({

@@ -23,7 +23,7 @@ import { UserService } from '../../services/user.service';
   selector: 'app-user-list',
   templateUrl: './user-list.component.html',
   styleUrl: './user-list.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class UserListComponent {
   private dialog = inject(MatDialog);

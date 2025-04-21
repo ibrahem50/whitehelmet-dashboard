@@ -9,6 +9,7 @@ import { UserService } from '../../services/user.service';
   selector: 'app-user-detail',
   templateUrl: './user-detail.component.html',
   styleUrl: './user-detail.component.scss',
+  standalone: false,
 })
 export class UserDetailComponent implements OnInit {
   private route = inject(ActivatedRoute);

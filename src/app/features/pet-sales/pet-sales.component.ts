@@ -7,6 +7,7 @@ import { PetSalesService } from './services/pet-sales.service';
   selector: 'app-pet-sales',
   templateUrl: './pet-sales.component.html',
   styleUrl: './pet-sales.component.scss',
+  standalone: false,
 })
 export class PetSalesComponent implements OnInit {
   private petSalesService = inject(PetSalesService);
