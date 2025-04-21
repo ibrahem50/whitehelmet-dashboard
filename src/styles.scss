@@ -1,1 +1,41 @@
-/* You can add global styles to this file, and also import other style files */
+html,
+body {
+  width: 100%;
+  height: 100%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  min-width: auto !important;
+  height: fit-content;
+}
+
+body {
+  margin: 0;
+  font-family: "Cabin", "IBM Plex Sans Arabic", sans-serif;
+}
+
+:root {
+  --primary-color: #2e3339;
+  --primary-shadow: 1px 5px 5px #4c4c4c29;
+}
+
+.general-button {
+  height: 2.5rem;
+  width: 8rem;
+  background-color: var(--primary-color);
+  border: none;
+  border-radius: 1rem;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  color: #ffffff;
+}
+
+h1 {
+  margin: 0;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}

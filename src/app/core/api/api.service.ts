@@ -1,0 +1,72 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Injectable, inject } from '@angular/core';
+
+import { Observable } from 'rxjs';
+import { environment } from '../../../environments/environment.development';
+
+@Injectable({
+  providedIn: 'root',
+})
+export class ApiService {
+  private http = inject(HttpClient);
+
+  private getAuthToken(): string | null {
+    return localStorage.getItem('authToken');
+  }
+
+  private getHttpOptions(withAuthToken: boolean = false) {
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+
+    if (withAuthToken) {
+      const token = this.getAuthToken();
+      if (token) {
+        headers = headers.set('Bearer Token', `${token}`);
+      }
+    }
+
+    return { headers };
+  }
+
+  getRequest<T>(path: string): Observable<T> {
+    return this.http.get<T>(
+      `${environment.apiUrl}/${path}`,
+      this.getHttpOptions()
+    );
+  }
+
+  postRequest<T>(
+    path: string,
+    data: any,
+    withAuthToken: boolean = false
+  ): Observable<T> {
+    return this.http.post<T>(
+      `${environment.apiUrl}/${path}`,
+      data,
+      this.getHttpOptions(withAuthToken)
+    );
+  }
+
+  putRequest<T>(
+    path: string,
+    data: T,
+    withAuthToken: boolean = false
+  ): Observable<T> {
+    return this.http.put<T>(
+      `${environment.apiUrl}/${path}`,
+      data,
+      this.getHttpOptions(withAuthToken)
+    );
+  }
+
+  deleteRequest<T>(
+    path: string,
+    withAuthToken: boolean = false
+  ): Observable<T> {
+    return this.http.delete<T>(
+      `${environment.apiUrl}/${path}`,
+      this.getHttpOptions(withAuthToken)
+    );
+  }
+}
