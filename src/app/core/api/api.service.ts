@@ -50,7 +50,7 @@ export class ApiService {
 
   putRequest<T>(
     path: string,
-    data: T,
+    data: any,
     withAuthToken: boolean = false
   ): Observable<T> {
     return this.http.put<T>(
@@ -62,11 +62,14 @@ export class ApiService {
 
   deleteRequest<T>(
     path: string,
+    data: any,
     withAuthToken: boolean = false
   ): Observable<T> {
-    return this.http.delete<T>(
-      `${environment.apiUrl}/${path}`,
-      this.getHttpOptions(withAuthToken)
-    );
+    const options = this.getHttpOptions(withAuthToken);
+
+    return this.http.delete<T>(`${environment.apiUrl}/${path}`, {
+      ...options,
+      body: data,
+    });
   }
 }

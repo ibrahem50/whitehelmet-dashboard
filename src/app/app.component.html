@@ -1,5 +1,9 @@
-<div *ngIf="loading$ | async" class="loading-spinner">
+@if (loading$ | async) {
+<div class="loading-spinner">
   <app-loading />
 </div>
-
-<router-outlet />
+}
+<app-header />
+<div class="container">
+  <router-outlet />
+</div>

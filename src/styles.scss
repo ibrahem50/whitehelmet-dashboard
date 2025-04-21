@@ -13,6 +13,21 @@ body {
   margin: 0;
   font-family: "Cabin", "IBM Plex Sans Arabic", sans-serif;
 }
+html {
+  font-size: 100%;
+
+  @media screen and (min-width: 4096px) {
+    font-size: 72.5%;
+  }
+
+  @media screen and (min-width: 2560px) {
+    font-size: 74.5%;
+  }
+
+  @media screen and (max-width: 610px) {
+    font-size: 50%;
+  }
+}
 
 :root {
   --primary-color: #2e3339;
@@ -38,4 +53,8 @@ h1 {
 ul {
   margin: 0;
   padding: 0;
+}
+
+.mat-mdc-form-field {
+  width: 100%;
 }

@@ -8,11 +8,8 @@ import { LoadingService } from './shared/services/loading.service';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   private loadingService = inject(LoadingService);
-  private us = inject(AuthService);
   loading$ = this.loadingService.loading$;
-  title = 'attractions';
-
-  ngOnInit(): void {}
+  title = 'dashboard';
 }
