@@ -17,7 +17,7 @@ export class UserService {
     per_page: number = 10,
     sort_column: string = 'id',
     sort_order: 'asc' | 'desc' = 'desc'
-  ): Observable<UserResponse> {
+  ) {
     const queryParams = [
       `page=${page}`,
       `per_page=${per_page}`,

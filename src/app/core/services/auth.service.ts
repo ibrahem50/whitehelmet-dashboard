@@ -59,7 +59,7 @@ export class AuthService {
     }
   }
 
-  login(data: AuthInterface): Observable<AuthInterfaceResponse> {
+  login(data: AuthInterface) {
     return this.apiService
       .postRequest<AuthInterfaceResponse>(this.path, {
         ...data,
